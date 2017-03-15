@@ -7,7 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.witaction.mvp.presenter.BasePresenter;
+import com.zhangs.mvp.presenter.BasePresenter;
+
 
 /**
  * Created by Zhangs on 2017/3/8.

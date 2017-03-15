@@ -15,8 +15,7 @@ public interface IBaseModel {
      *
      * @param obj
      */
-    void onSuccess(Object... obj);
-
+//    void onSuccess(Object... obj);
     /**
      * 在Activity的onDestroy处回调，回收内存
      */

@@ -4,7 +4,8 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 
-import com.witaction.mvp.presenter.BasePresenter;
+import com.zhangs.mvp.presenter.BasePresenter;
+
 
 /**
  * View展示层，负责控制具体UI的init,getter&setter
