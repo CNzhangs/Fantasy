@@ -13,18 +13,12 @@ public abstract class BasePresenter<T extends IBaseModel> {
     protected T model;
     protected Context context;
 
+    public abstract IBaseModel getModel();
+
     public BasePresenter(Context context) {
         this.context = context;
-    }
+        model = (T) getModel();
 
-    public BasePresenter(Context context, T t) {
-        this.context = context;
-        this.model = t;
-    }
-
-
-    public T getModel() {
-        return model;
     }
 
     public void setModel(T model) {

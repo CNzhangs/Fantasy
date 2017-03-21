@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import com.zhangs.mvp.presenter.BasePresenter;
 
+import butterknife.ButterKnife;
+
 
 /**
  * View展示层，负责控制具体UI的init,getter&setter
@@ -30,6 +32,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends Activity imp
         this.presenter = p;
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +48,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends Activity imp
     @Override
     public void beforeView() {
         this.presenter = getPresenter();
+        ButterKnife.bind(this);
         presenter.getModel().onStart();
     }
 
