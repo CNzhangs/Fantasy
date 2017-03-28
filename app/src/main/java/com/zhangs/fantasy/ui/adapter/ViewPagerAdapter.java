@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.zhangs.fantasy.ui.callback.OnClickListener;
 import com.zhangs.utils.GlideUtils;
 
 import java.util.List;
@@ -19,6 +20,11 @@ public class ViewPagerAdapter extends PagerAdapter {
     private Context mContext;
     private List<String> mUrls;
     private ViewPager.LayoutParams mLayoutParams;
+    OnClickListener mListener;
+
+    public void setListener(OnClickListener listener) {
+        mListener = listener;
+    }
 
     public ViewPagerAdapter(Context context, List<String> urls) {
         mContext = context;
@@ -51,6 +57,16 @@ public class ViewPagerAdapter extends PagerAdapter {
         ImageView imageView = new ImageView(mContext);
         imageView.setLayoutParams(mLayoutParams);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        if (pos==mUrls.size()-1){
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                        if (mListener!=null){
+                            mListener.onclick(v,null);
+                        }
+                }
+            });
+        }
         GlideUtils.load(mContext, mUrls.get(pos), imageView);
         container.addView(imageView);
         return imageView;

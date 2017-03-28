@@ -1,8 +1,8 @@
 package com.zhangs.mvp.view;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.zhangs.mvp.presenter.BasePresenter;
 
@@ -13,7 +13,7 @@ import butterknife.ButterKnife;
  * View展示层，负责控制具体UI的init,getter&setter
  */
 
-public abstract class BaseActivity<P extends BasePresenter> extends Activity implements IViewAction {
+public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements IViewAction {
     protected P presenter;
     protected ProgressDialog progressDialog;
 
@@ -49,7 +49,9 @@ public abstract class BaseActivity<P extends BasePresenter> extends Activity imp
     public void beforeView() {
         this.presenter = getPresenter();
         ButterKnife.bind(this);
-        presenter.getModel().onStart();
+        if (presenter.getModel()!=null){
+            presenter.getModel().onStart();
+        }
     }
 
     @Override
@@ -65,7 +67,9 @@ public abstract class BaseActivity<P extends BasePresenter> extends Activity imp
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        getPresenter().getModel().onDestroy();
+        if (presenter.getModel()!=null){
+            presenter.getModel().onDestroy();
+        }
     }
 
     @Override

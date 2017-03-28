@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
+apply plugin: 'com.tencent.tinker.patch'
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.3"
@@ -30,4 +31,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile project(':mvp')
     compile project(':net')
+    provided('com.tencent.tinker:tinker-android-anno:1.7.7')
+    //tinker's main Android lib
+    compile('com.tencent.tinker:tinker-android-lib:1.7.7')
 }

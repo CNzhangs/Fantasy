@@ -49,7 +49,10 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
     @Override
     public void beforeView() {
         this.presenter = getPresenter();
-        presenter.getModel().onStart();
+        if (presenter.getModel() != null) {
+            presenter.getModel().onStart();
+        }
+
     }
 
     @Override
@@ -65,7 +68,18 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
     @Override
     public void onDestroy() {
         super.onDestroy();
-        getPresenter().getModel().onDestroy();
+        if (presenter.getModel() != null) {
+            presenter.getModel().onDestroy();
+        }
     }
 
+    @Override
+    public void showProgress(String msg) {
+
+    }
+
+    @Override
+    public void hideProgress() {
+
+    }
 }

@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.zhangs.fantasy.R;
+import com.zhangs.fantasy.ui.activity.MainActivity;
 import com.zhangs.fantasy.ui.adapter.ViewPagerAdapter;
+import com.zhangs.fantasy.ui.callback.OnClickListener;
 import com.zhangs.fantasy.ui.model.SplashModel;
 import com.zhangs.fantasy.ui.model.SplashModelImpl;
 import com.zhangs.mvp.model.IBaseModel;
@@ -50,33 +52,42 @@ public class SplashPresenter extends BasePresenter<SplashModel> {
                 .subscribe(new Consumer<List<String>>() {
                     @Override
                     public void accept(final List<String> strings) throws Exception {
-                        ViewPagerAdapter adapter = new ViewPagerAdapter(context, strings);
-                        viewPager.setAdapter(adapter);
-                        setupDot(strings, dotLayout);
-                        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-                            @Override
-                            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-                            }
-
-                            @Override
-                            public void onPageSelected(int position) {
-                                int pos = position % strings.size();
-                                for (int i = 0; i < dotLayout.getChildCount(); i++) {
-                                    View view = dotLayout.getChildAt(i);
-                                    view.setSelected(pos == i);
-                                }
-                            }
-
-                            @Override
-                            public void onPageScrollStateChanged(int state) {
-
-                            }
-                        });
-
+                        showViewPager(strings, viewPager, dotLayout);
                     }
                 });
 
+    }
+
+    private void showViewPager(final List<String> strings, ViewPager viewPager, final LinearLayout dotLayout) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(context, strings);
+        viewPager.setAdapter(adapter);
+        setupDot(strings, dotLayout);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                int pos = position % strings.size();
+                for (int i = 0; i < dotLayout.getChildCount(); i++) {
+                    View view = dotLayout.getChildAt(i);
+                    view.setSelected(pos == i);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+            });
+        adapter.setListener(new OnClickListener() {
+            @Override
+            public void onclick(View v, Object data) {
+                MainActivity.launch(context);
+            }
+        });
     }
 
     public void setupDot(List<String> urls, LinearLayout dotLayout) {
