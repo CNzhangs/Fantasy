@@ -29,7 +29,9 @@ dependencies {
     compile libraries.support_v7
     compile libraries.support_design
     apt libraries.butterknife_apt
+    compile libraries.utils
     testCompile libraries.junit
     compile project(':mvp')
     compile project(':net')
+    compile project(':utils')
 }

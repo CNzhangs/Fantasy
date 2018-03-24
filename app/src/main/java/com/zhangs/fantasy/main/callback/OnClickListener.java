@@ -1,4 +1,4 @@
-package com.zhangs.fantasy.ui.callback;
+package com.zhangs.fantasy.main.callback;
 
 import android.view.View;
 

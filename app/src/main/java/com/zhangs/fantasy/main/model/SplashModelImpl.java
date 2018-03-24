@@ -1,4 +1,4 @@
-package com.zhangs.fantasy.ui.model;
+package com.zhangs.fantasy.main.model;
 
 import java.util.ArrayList;
 import java.util.List;

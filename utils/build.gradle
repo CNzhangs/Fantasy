@@ -33,5 +33,7 @@ dependencies {
     compile libraries.rxJava
     compile libraries.rxPermission
     compile libraries.glide
+    compile libraries.utils
+    compile libraries.logger
 
 }

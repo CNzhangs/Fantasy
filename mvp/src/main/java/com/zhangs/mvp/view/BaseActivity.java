@@ -2,7 +2,9 @@ package com.zhangs.mvp.view;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.annotation.CallSuper;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 
 import com.zhangs.mvp.presenter.BasePresenter;
 
@@ -45,11 +47,12 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         initData();
     }
 
+    @CallSuper
     @Override
     public void beforeView() {
         this.presenter = getPresenter();
         ButterKnife.bind(this);
-        if (presenter.getModel()!=null){
+        if (presenter.getModel() != null) {
             presenter.getModel().onStart();
         }
     }
@@ -64,27 +67,41 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
 
     }
 
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (presenter.getModel()!=null){
+        if (presenter.getModel() != null) {
             presenter.getModel().onDestroy();
         }
     }
 
     @Override
-    public void showProgress(String msg) {
-        if (progressDialog == null) {
-            progressDialog = new ProgressDialog(this);
-        }
-        progressDialog.setMessage(msg);
-        progressDialog.show();
+    public void showProgress(final String msg) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (progressDialog == null) {
+                    progressDialog = new ProgressDialog(getApplicationContext());
+                }
+                if (!TextUtils.isEmpty(msg)) {
+                    progressDialog.setMessage(msg);
+                }
+                progressDialog.show();
+            }
+        });
     }
 
     @Override
     public void hideProgress() {
-        if (progressDialog != null) {
-            progressDialog.dismiss();
-        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (progressDialog != null) {
+                    progressDialog.dismiss();
+                }
+            }
+        });
+
     }
 }

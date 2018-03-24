@@ -18,6 +18,7 @@ public interface IViewAction {
      */
     void initData();
 
+
     void showProgress(String msg);
 
     void hideProgress();

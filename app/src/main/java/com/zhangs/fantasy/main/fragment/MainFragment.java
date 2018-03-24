@@ -1,6 +1,6 @@
-package com.zhangs.fantasy.ui.fragment;
+package com.zhangs.fantasy.main.fragment;
 
-import com.zhangs.fantasy.ui.presenter.MainFragmentPresenter;
+import com.zhangs.fantasy.main.presenter.MainFragmentPresenter;
 import com.zhangs.mvp.view.BaseFragment;
 
 /**

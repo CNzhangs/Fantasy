@@ -28,6 +28,6 @@ dependencies {
     })
     compile libraries.support_v7
     compile libraries.butterknife
+    compile libraries.utils
     testCompile libraries.junit
-    compile project(':utils')
 }
