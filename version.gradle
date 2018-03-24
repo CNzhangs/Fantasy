@@ -1,0 +1,21 @@
+ext{
+    android = [
+            compileSdkVersion : 24,
+            buildToolsVersion  : "24.0.3",
+            minSdkVersion     : 19,
+            targetSdkVerion   :24
+    ]
+    dependencies =[
+            support_v4 : "",
+            support_v7 : "com.android.support:appcompat-v7:24.2.1",
+            support_design: "com.android.support:appcompat-v7:24.2.1",
+            espresso   : "com.android.support.test.espresso:espresso-core:2.2.2",
+            butterknife_apt:"com.jakewharton:butterknife-compiler:8.4.0",
+            butterknife:"com.jakewharton:butterknife:8.4.0",
+            rxAndroid:"io.reactivex.rxjava2:rxandroid:2.0.1",
+            rxJava:"io.reactivex.rxjava2:rxjava:2.0.5",
+            rxPermission:"com.tbruyelle.rxpermissions2:rxpermissions:0.9.3@aar",
+            glide:"com.github.bumptech.glide:glide:3.7.0",
+            junit:"junit:junit:4.12"
+    ]
+}

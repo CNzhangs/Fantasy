@@ -1,11 +1,12 @@
 apply plugin: 'com.android.library'
+def androidConfig = rootProject.ext.android
+def libraries = rootProject.ext.dependencies
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.3"
-
+    compileSdkVersion androidConfig.compileSdkVersion
+    buildToolsVersion androidConfig.buildToolsVersion
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 24
+        minSdkVersion androidConfig.minSdkVersion
+        targetSdkVersion androidConfig.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -22,11 +23,11 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestCompile(libraries.espresso, {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.jakewharton:butterknife:8.4.0'
-    testCompile 'junit:junit:4.12'
+    compile libraries.support_v7
+    compile libraries.butterknife
+    testCompile libraries.junit
     compile project(':utils')
 }
